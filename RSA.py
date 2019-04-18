@@ -52,3 +52,24 @@ def decrypt(string_crypt,chaves): #Função que criptografa o texto (string_cryp
         string = string + string_decrypt[i]
     return string #Retorna uma string
 
+class Cliente: #Classe que define e manipula os atributos do usuário
+    def __init__(self,usuario,senha):
+        self.usuario = usuario
+        self.senha = senha
+
+    def add_cliente(aux): #Adiciona um cliente ao arquivo
+        log = open('log.txt','r')
+        conteudo = log.readlines() #Recebe o conteúdo do arquivo
+        for line in log:
+            if line == aux.usuario+'\n': #Verifica se existe usuario com mesmo nome
+                print('Nome de usuário não disponível')
+                return
+        log = open('log.txt','w')
+        conteudo.append('\n') 
+        conteudo.append(aux.usuario+'\n')
+        conteudo.append(aux.senha+'\n')
+        log.writelines(conteudo)
+        log.close()
+        return
+                    
+
