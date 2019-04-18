@@ -1,10 +1,31 @@
-def keyrsa():
-        from math import gcd #Função que calcula o MMC
-        import random #Função que gera um número aleatório
+def lista_primos(n): #Função que cria uma lista com os numeros primos de 0 a N
+    numeros = []
+    primos = []    
+    for i in range(0,n): #Cria uma lista com todos os numeros de 2 a N
+        numeros.append(i)
+    for i in range(2,len(numeros)):
+            
+#Este trecho divide o número atual pelos anteriores
+#e para se encontrar um múltiplo-------------------
+        count = 2
+        while count != i: 
+            if i%count == 0:
+                break
+            else:
+                count += 1
+#Fim do trecho ------------------------------------
+        if count == i: #Se após o while anterior não for provado que é par, o número é ímpar
+            primos.append(i)
+    return primos
 
-      
-        p = 17 #Definicao dos dois numeros primos (p e q) que darao base aos calculos
-        q = 41
+def keyrsa(primos): #Função que vai gerar as chaves publicas e privadas
+        from math import gcd #Função que calcula o MMC
+        import random #Função que gera um número aleatório      
+        p = 10
+        q = 10
+        while gcd(p,q) != 1:
+                p = primos[random.randrange(len(primos))]
+                q = primos[random.randrange(len(primos))]
         n = p*q
         toti = (p - 1)*(q - 1) #Função totiente que usaremos para encontrar a chave
 
@@ -19,7 +40,8 @@ def keyrsa():
                 d=d+1
         return (n,a,d)
 
-(a,b,c) = keyrsa()
+primos = lista_primos(100)
+(a,b,c) = keyrsa(primos)
 print (a,b,c)
 
     
