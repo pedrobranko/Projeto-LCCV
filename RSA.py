@@ -39,8 +39,16 @@ def keyrsa(primos): #Função que vai gerar as chaves publicas e privadas
                 d=d+1
         return (n,a,d)
 
+def encrypt(string_enter,chaves): #Função que criptografa o texto (string_enter) com a chave dada
+    string_list = [ord(a) for a in string_enter]
+    string_crypt = [string_list[a]**chaves[1]%chaves[0] for a in range(len(string_list))]
+    return string_crypt #Retorna uma lista
 
+def decrypt(string_crypt,chaves): #Função que criptografa o texto (string_crypt) com a chave dada
+    string_decrypt = [string_crypt[a]**chaves[2]%chaves[0] for a in range(len(string_crypt))]
+    string_decrypt = [chr(a) for a in string_decrypt]
+    string = ''
+    for i in range(len(string_decrypt)):
+        string = string + string_decrypt[i]
+    return string #Retorna uma string
 
-
-    
-        
